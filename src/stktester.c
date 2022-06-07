@@ -74,7 +74,6 @@ int main() {
 
 	puts("SUCCESS TESTS:");
 
-	stkLoadErrorMessages();
 	success("Loaded Error Messages");
 
 	stkCreate(&sTheStack);

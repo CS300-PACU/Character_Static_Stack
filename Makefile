@@ -7,34 +7,41 @@
 # Purpose:    
 #############################################################################
 
-all: bin bin/stktester bin/stkdriver
+# variables
+CFLAGS=-g -Wall
+VALGRIND_FLAGS=-v --leak-check=yes --track-origins=yes --leak-check=full --show-leak-kinds=all
+ENSRIPT_FLAGS=-C -T 2 -p - -M Letter --color -fCourier8
+TARGETS=bin/stktester bin/stkdriver
+
+all: bin ${TARGETS}
 
 bin:
 	mkdir -p bin
 
 bin/stktester: bin bin/stktester.o bin/stk.o
-	gcc -o bin/stktester -g -Wall bin/stktester.o bin/stk.o
+	gcc -o bin/stktester ${CFLAGS} bin/stktester.o bin/stk.o
 
 bin/stktester.o: src/stktester.c include/stk.h
-	gcc -c -o bin/stktester.o -g -Wall src/stktester.c
+	gcc -c -o bin/stktester.o ${CFLAGS}  src/stktester.c
 
 bin/stkdriver: bin bin/stkdriver.o bin/stk.o
-	gcc -o bin/stkdriver -g -Wall bin/stkdriver.o bin/stk.o
+	gcc -o bin/stkdriver ${CFLAGS}  bin/stkdriver.o bin/stk.o
 
 bin/stkdriver.o: src/stkdriver.c include/stk.h
-	gcc -c -o bin/stkdriver.o -g -Wall src/stkdriver.c
+	gcc -c -o bin/stkdriver.o ${CFLAGS}  src/stkdriver.c
 
 bin/stk.o: src/stk.c include/stk.h
-	gcc -c -o bin/stk.o -g -Wall src/stk.c
+	gcc -c -o bin/stk.o ${CFLAGS}  src/stk.c
 
 valgrind: bin/stkdriver
-	valgrind -v --leak-check=yes --track-origins=yes --leak-check=full --show-leak-kinds=all bin/stkdriver
+	valgrind ${VALGRIND_FLAGS} bin/stkdriver
 
 printAll:
-	enscript -C -T 2 -p - -M Letter -Ec --color -fCourier8 src/stk.c  | ps2pdf - bin/stk.pdf
-	enscript -C -T 2 -p - -M Letter -Ec --color -fCourier8 src/stkdriver.c  | ps2pdf - bin/stkdriver.pdf
-	enscript -C -T 2 -p - -M Letter -Ec --color -fCourier8 src/stktester.c  | ps2pdf - bin/stktester.pdf
-	pdfunite bin/stk.pdf bin/stkdriver.pdf bin/stktester.pdf bin/${USER}_stk.pdf
+	enscript ${ENSRIPT_FLAGS} -Emakefile  Makefile  | ps2pdf - bin/Makefile.pdf
+	enscript ${ENSRIPT_FLAGS} -Ec src/stk.c  | ps2pdf - bin/stk.pdf
+	enscript ${ENSRIPT_FLAGS} -Ec src/stkdriver.c  | ps2pdf - bin/stkdriver.pdf
+	enscript ${ENSRIPT_FLAGS} -Ec src/stktester.c  | ps2pdf - bin/stktester.pdf
+	pdfunite bin/stk.pdf bin/stkdriver.pdf bin/stktester.pdf bin/Makefile.pdf bin/${USER}_stk.pdf
 	@echo
 	@echo File produced: bin/${USER}_stk.pdf
 	@echo
@@ -42,4 +49,4 @@ printAll:
 	@echo
 
 clean:
-	rm -f bin/main bin/*.o
+	rm -f ${TARGETS} bin/*.o
