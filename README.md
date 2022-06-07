@@ -1,1 +1,1 @@
-# C_VSCode_Template
+# Character Static Stack
