@@ -17,31 +17,16 @@
 //*************************************************************************
 // Constants
 //*************************************************************************
-#define STK_MAX_ERROR_CHARS 64
 #define STK_MAX_ELEMENTS 100
-#define STK_EMPTY 0
-
-enum {STK_NO_ERROR = 0,
-	    STK_EMPTY_ERROR,         // there are no elements in the stack
-			STK_FULL_ERROR,          // the stack is full
-			STK_NO_CREATE_ERROR,     // psStack is NULL in stkCreate()
-			STK_NO_TERMINATE_ERROR,  // psStack is NULL in stkTerminate()
-			STK_NO_MEMORY_ERROR,     // psStack is NULL in other functions
-			STK_NO_BUFFER_ERROR}; 	 // pBuffer is NULL in functions
-			// If the error names change, change stmt below
-#define STK_NUMBER_OF_ERRORS STK_NO_BUFFER_ERROR - STK_NO_ERROR + 1
 
 //*************************************************************************
-// Error Messages
+// Error reporting functions
 //*************************************************************************
-#define LOAD_ERRORS strcpy (gszErrors[STK_NO_ERROR], "No Error.");\
-strcpy (gszErrors[STK_EMPTY_ERROR], "Error: Empty Stack.");\
-strcpy (gszErrors[STK_FULL_ERROR], "Error: Full Stack.");\
-strcpy (gszErrors[STK_NO_CREATE_ERROR], "Error: No Stack Create.");\
-strcpy (gszErrors[STK_NO_TERMINATE_ERROR], "Error: No Stack Terminate.");\
-strcpy (gszErrors[STK_NO_MEMORY_ERROR], "Error: No Stack Memory.");\
-strcpy (gszErrors[STK_NO_BUFFER_ERROR], "Error: No Buffer.");
+extern void processError(const char* szFile, const int line);
+// helper function to report errors
 
+// macro to report error
+#define reportError   processError(__FILE__, __LINE__)
 
 //*************************************************************************
 // User-defined types
@@ -56,7 +41,6 @@ typedef struct Stack
 //*************************************************************************
 // Function prototypes
 //*************************************************************************
-extern void stkLoadErrorMessages ();
 extern void stkCreate (StackPtr psStack);
 extern void stkTerminate (StackPtr psStack);
 extern bool stkIsFull (const StackPtr psStack);

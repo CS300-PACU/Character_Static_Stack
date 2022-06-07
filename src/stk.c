@@ -14,41 +14,25 @@
 #include <stdbool.h>
 #include "../include/stk.h"
 
-char gszErrors[STK_NUMBER_OF_ERRORS][STK_MAX_ERROR_CHARS];
-
 
 /**************************************************************************
- Function: 	 	processError (DO NOT EDIT)
+ Function: 	 	processError - DO NOT EDIT
 
- Description: Process the error code passed to this routine
 
- Parameters:	pszFunctionName - function causing the error
- 	 	 	 	 	 	 	errorCode 	    - identifies the stack error
+ Description: Print the filename and line number of an error
+
+ Parameters:	szFile - filename
+              line - the line number
 
  Returned:	 	None
  *************************************************************************/
-
-static void processError (const char *pszFunctionName, int errorCode)
+void processError(const char* szFile, const int line)
 {
-	printf ("Function: %s %s \n ", pszFunctionName,
-					 gszErrors [errorCode]);
-	exit (EXIT_FAILURE);
+  fprintf(stderr, "ERROR: %s: %d\n", szFile, line);
+  fflush(NULL);
+  exit(EXIT_FAILURE);
 }
 
-/**************************************************************************
- Function: 	 	stkLoadErrorMessages (DO NOT EDIT)
-
- Description: Initializes the string of error messages. LOAD_ERRORS is a
- 	 	 	 	 	 	  macro defined in the header file.
-
- Parameters:	None
-
- Returned:	 	None
- *************************************************************************/
-void stkLoadErrorMessages ()
-{
-	LOAD_ERRORS
-}
 
 /**************************************************************************
  Function: 	 	stkCreate
