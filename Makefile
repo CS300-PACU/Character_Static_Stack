@@ -49,4 +49,4 @@ printAll:
 	@echo
 
 clean:
-	rm -f ${TARGETS} bin/*.o
+	rm -f ${TARGETS} bin/*.o bin/*.pdf
