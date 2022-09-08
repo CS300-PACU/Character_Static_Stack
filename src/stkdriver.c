@@ -4,7 +4,7 @@
  Date:			 10.11.17
  Class:			 CS300
  Assignment: Static Generic Stack
- Purpose:    Test driver for a static stack of generic elements
+ Purpose:    Check if a given word is a palindrome
  *************************************************************************/
 
 #include <stdio.h>
@@ -12,10 +12,12 @@
 
 #include "../include/stk.h"
 
+#define MAX_WORDLEN 50
+
 /**************************************************************************
  Function: 	 	main
 
- Description: test all the functionality of the stack
+ Description: Test for palindrome-ness!
 
  Parameters:	none
 
