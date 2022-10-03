@@ -10,7 +10,7 @@
 # variables
 CFLAGS=-g -Wall
 VALGRIND_FLAGS=-v --leak-check=yes --track-origins=yes --leak-check=full --show-leak-kinds=all
-ENSRIPT_FLAGS=-C -T 2 -p - -M Letter --color -fCourier8
+ENSCRIPT_FLAGS=-C -T 2 -p - -M Letter --color -fCourier8
 TARGETS=bin/stktester bin/stkdriver
 
 all: bin ${TARGETS}
@@ -37,10 +37,10 @@ valgrind: bin/stkdriver
 	valgrind ${VALGRIND_FLAGS} bin/stkdriver
 
 printAll:
-	enscript ${ENSRIPT_FLAGS} -Emakefile  Makefile  | ps2pdf - bin/Makefile.pdf
-	enscript ${ENSRIPT_FLAGS} -Ec src/stk.c  | ps2pdf - bin/stk.pdf
-	enscript ${ENSRIPT_FLAGS} -Ec src/stkdriver.c  | ps2pdf - bin/stkdriver.pdf
-	enscript ${ENSRIPT_FLAGS} -Ec src/stktester.c  | ps2pdf - bin/stktester.pdf
+	enscript ${ENSCRIPT_FLAGS} -Emakefile  Makefile  | ps2pdf - bin/Makefile.pdf
+	enscript ${ENSCRIPT_FLAGS} -Ec src/stk.c  | ps2pdf - bin/stk.pdf
+	enscript ${ENSCRIPT_FLAGS} -Ec src/stkdriver.c  | ps2pdf - bin/stkdriver.pdf
+	enscript ${ENSCRIPT_FLAGS} -Ec src/stktester.c  | ps2pdf - bin/stktester.pdf
 	pdfunite bin/stk.pdf bin/stkdriver.pdf bin/stktester.pdf bin/Makefile.pdf bin/${USER}_stk.pdf
 	@echo
 	@echo File produced: bin/${USER}_stk.pdf
