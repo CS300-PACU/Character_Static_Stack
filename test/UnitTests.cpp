@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 
-#include "../include/stk.h"
+extern "C" {
+  #include "../include/stk.h"
+}
 
 TEST (TestSuite, FirstTest) {
 
