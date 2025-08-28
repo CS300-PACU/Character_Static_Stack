@@ -8,7 +8,7 @@
 #############################################################################
 
 # variables
-CC=clang
+CC=clang-16
 CFLAGS=-g -Wall
 VALGRIND_FLAGS=-v --leak-check=yes --track-origins=yes --leak-check=full \
 --show-leak-kinds=all
