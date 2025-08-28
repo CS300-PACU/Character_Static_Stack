@@ -102,11 +102,12 @@ bool stkIsEmpty (const StackPtr psStack)
  Parameters:	 	pStack     - pointer to stack struct
  	 	 	 	 	 	 	 	data			 - the character to push
 
- Returned:	 		None
+ Returned:	 		Returns true if push was successful, otherwise false
  *************************************************************************/
 
-void stkPush (StackPtr psStack, char data)
+bool stkPush (StackPtr psStack, char data)
 {
+	return false;
 }
 
 /**************************************************************************
@@ -117,11 +118,11 @@ void stkPush (StackPtr psStack, char data)
  Parameters:	psStack     - pointer to stack struct
  	 	 	 	 	 	 	pBuffer     - character pointer to use to store the top of the stack
 
- Returned:	 	Pointer to the buffer of the popped value
+ Returned:	 	Returns true if pop was successful, otherwise false
 **************************************************************************/
-char *stkPop (StackPtr psStack, char *pBuffer)
+bool stkPop (StackPtr psStack, char *pBuffer)
 {
-	return NULL;
+	return false;
 }
 
 /**************************************************************************
@@ -132,12 +133,12 @@ char *stkPop (StackPtr psStack, char *pBuffer)
  Parameters:	sStack     - stack struct
  	 	 	 	 	 	 	pBuffer     - character pointer to use to store the top of the stack
 
- Returned:	  Pointer to the buffer of the peek value
+ Returned:	  Returns true if peek was successful, otherwise false
  *************************************************************************/
 
-char *stkPeek (StackPtr psStack, char *pBuffer)
+bool stkPeek (StackPtr psStack, char *pBuffer)
 {
-	return NULL;
+	return false;
 }
 
 /**************************************************************************
