@@ -4,9 +4,16 @@ extern "C" {
   #include "../include/stk.h"
 }
 
-TEST (TestSuite, FirstTest) {
+//***************************************************************************
+// Test:    		Test_FirstTest
+//
+// Description: Demonstrate how to write test, use EXPECT_EQ, and <<
+//
+//***************************************************************************
+TEST (TestSuite, Test_FirstTest) {
 
-  EXPECT_EQ(1, 1);
+  EXPECT_EQ(1, 1) << 
+    "1 is not equal to one!";
 }
 
 //TEST (TestSuite, ExpectTerminate) {
