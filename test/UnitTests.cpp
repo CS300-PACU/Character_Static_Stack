@@ -1,3 +1,12 @@
+/**************************************************************************
+ File name:  UnitTests.cpp
+ Author:     Computer Science, Pacific University
+ Date:			 9.9.16
+ Class:			 CS300
+ Assignment: Stack
+ Purpose:    Unit Test for the Stack
+ *************************************************************************/
+
 #include <gtest/gtest.h>
 
 extern "C" {
